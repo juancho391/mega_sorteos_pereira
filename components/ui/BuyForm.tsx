@@ -134,7 +134,7 @@ export default function BuyForm() {
       </div>
       <button
         type="submit"
-        className="w-full bg-gradient-to-r from-brandRed to-brandYellow text-white py-2 px-4 rounded-md flex justify-center gap-2 items-center cursor-pointer hover:opacity-90 transition-opacity"
+        className="w-full bg-gradient-to-r from-brandRed to-brandYellow text-white py-2 px-4 rounded-md flex justify-center gap-2 items-center cursor-pointer hover:opacity-90 transition-opacity font-extrabold"
       >
         <CiCreditCard1 className="text-3xl" />
         PAGAR

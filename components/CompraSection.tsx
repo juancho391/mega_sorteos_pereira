@@ -1,7 +1,8 @@
 import ComboCard from "./ui/ComboCard";
 import TicketCounter from "./ui/TicketCounter";
 import CardSummary from "./ui/CardSummary";
-import BuyForm from "./BuyForm";
+import BuyForm from "./ui/BuyForm";
+import CheckBuy from "./ui/CheckBuy";
 export default function CompraSection() {
   return (
     <div className="border-2 border-brandYellow w-80 rounded-lg h-full flex flex-col items-center gap-3 p-3">
@@ -16,6 +17,7 @@ export default function CompraSection() {
       <TicketCounter numberOfTickets={1} />
       <CardSummary ticketPrice={10000} quantity={1} />
       <BuyForm />
+      <CheckBuy />
     </div>
   );
 }
