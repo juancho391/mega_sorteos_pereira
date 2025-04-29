@@ -1,6 +1,7 @@
 import Image from "next/image";
 import NumberContainer from "./NumberContainer";
 import { NumberProps } from "./NumberContainer";
+import { Progress } from "./ui/progress";
 
 interface InfoLottery {
   premio: string;
@@ -11,7 +12,7 @@ interface InfoLottery {
 
 export default function Rifa(props: InfoLottery) {
   return (
-    <div className="w-80 border-1 border-brandYellow h-150 rounded-lg flex flex-col items-center px-3">
+    <div className="w-80 border-1 border-brandYellow h-full rounded-lg flex flex-col items-center px-3">
       <div className="rounded-full bg-brandRed text-center w-1/2 h-6 content-center mt-5 ">
         SORTEO ACTIVO
       </div>
@@ -39,9 +40,9 @@ export default function Rifa(props: InfoLottery) {
         alt="Picture of bike"
         className="mt-5"
       />
-      <div className="border-2 border-brandYellow h-50 w-full flex flex-col items-center p-2">
+      <div className="h-50 w-full flex flex-col items-center p-2">
         <span className="inline-block font-extrabold">Numeros Premiados</span>
-        <div className="bg-brandRed h-20 w-full flex justify-around items-center ">
+        <div className="h-full w-full flex justify-evenly flex-wrap content-evenly">
           {props.listNumbers.map((number) => (
             <NumberContainer
               key={number.number}
@@ -50,26 +51,10 @@ export default function Rifa(props: InfoLottery) {
             />
           ))}
         </div>
+        <div className="w-full h-7">
+          <Progress value={60} />
+        </div>
       </div>
     </div>
   );
 }
-
-// const LotteryNumbers: React.FC<Props> = ({ listNumbers }) => {
-//   return (
-//     <div className="grid grid-cols-4 gap-4">
-//       {listNumbers.map((item) => (
-//         <div
-//           key={item.number}
-//           className={`p-4 border rounded text-center ${
-//             item.isAvailable ? "bg-green-200" : "bg-red-200"
-//           }`}
-//         >
-//           {item.number}
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default LotteryNumbers;
