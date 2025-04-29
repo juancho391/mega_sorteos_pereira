@@ -4,6 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --brandGray : #2C2D38
   --brandYellow: #fbd604;
   --brandRed: #f90808;
   --radius: 0.625rem;
@@ -43,6 +44,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brandGray: var(--brandGray);
   --color-brandRed: var(--brandRed);
   --color-brandYellow: var(--brandYellow);
   --font-sans: var(--font-geist-sans);
@@ -86,6 +88,7 @@
   :root {
     --brandRed: #f90808;
     --brandYellow: #fbd604;
+    --brandGray: #2C2D38
   }
 }
 

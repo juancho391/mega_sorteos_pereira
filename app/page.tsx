@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Rifa from "@/components/Rifa";
 import { NumberProps } from "@/components/NumberContainer";
+import CompraSection from "@/components/CompraSection";
 
 export default function Home() {
   const numbersList: NumberProps[] = [
@@ -58,6 +59,7 @@ export default function Home() {
         tipo="MOTO"
         listNumbers={numbersList}
       />
+      <CompraSection />
     </div>
   );
 }
