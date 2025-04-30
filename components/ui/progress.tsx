@@ -25,7 +25,7 @@ function Progress({
         style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
       />
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="text-lg font-medium text-white ">
+        <span className="text-lg font-medium text-white">
           {Math.round(value || 0)}%
         </span>
       </div>
