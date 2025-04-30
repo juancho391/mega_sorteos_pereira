@@ -53,17 +53,19 @@ export default function Home() {
     // },
   ];
   return (
-    <div className="flex items-center flex-col py-2 space-y-7">
+    <div className="flex items-center flex-col py-2 space-y-7 sm:space-y-0">
       <Header />
-      <Rifa
-        precio={10000}
-        premio="AKT NKD 125"
-        tipo="MOTO"
-        listNumbers={numbersList}
-      />
-      <CompraSection />
-      <About />
-      <Footer />
+      <div className="w-full sm:p-14 flex items-center flex-col space-y-6">
+        <Rifa
+          precio={10000}
+          premio="AKT NKD 125"
+          tipo="MOTO"
+          listNumbers={numbersList}
+        />
+        <CompraSection />
+        <About />
+        <Footer />
+      </div>
     </div>
   );
 }
