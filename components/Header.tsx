@@ -1,8 +1,8 @@
 export default function Header() {
   return (
     <div className="space-x-1 border-b-1 border-brandYellow w-full h-14 flex items-center justify-center">
-      <span className="text-brandYellow">MEGA SORTEOS</span>
-      <span className="text-brandRed">PEREIRA</span>
+      <span className="text-brandYellow text-2xl">MEGA SORTEOS</span>
+      <span className="text-brandRed text-2xl">PEREIRA</span>
     </div>
   );
 }

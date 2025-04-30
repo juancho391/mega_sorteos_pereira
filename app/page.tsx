@@ -2,6 +2,8 @@ import Header from "@/components/Header";
 import Rifa from "@/components/Rifa";
 import { NumberProps } from "@/components/NumberContainer";
 import CompraSection from "@/components/CompraSection";
+import About from "@/components/about";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const numbersList: NumberProps[] = [
@@ -51,7 +53,7 @@ export default function Home() {
     // },
   ];
   return (
-    <div className="flex items-center flex-col py-2 space-y-10">
+    <div className="flex items-center flex-col py-2 space-y-7">
       <Header />
       <Rifa
         precio={10000}
@@ -60,6 +62,8 @@ export default function Home() {
         listNumbers={numbersList}
       />
       <CompraSection />
+      <About />
+      <Footer />
     </div>
   );
 }
