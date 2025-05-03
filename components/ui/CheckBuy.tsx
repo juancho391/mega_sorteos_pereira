@@ -1,11 +1,11 @@
 export default function CheckBuy() {
   return (
-    <div className="w-full bg-brandGray rounded-lg p-2">
-      <span>
+    <div className="w-full bg-brandGray rounded-lg p-2 sm:h-full">
+      <span className="sm:text-lg">
         Seras redirigido a la pagina de pse para completar tu pago de forma
         segura
       </span>
-      <div className="w-full bg-linear-to-r from-brandRed to-brandYellow rounded-sm h-7 text-center flex  items-center justify-center font-light mt-2 ">
+      <div className="w-full bg-linear-to-r from-brandRed to-brandYellow rounded-sm h-7 text-center flex  items-center justify-center font-light mt-2 sm:text-lg sm:mb-5">
         TOTAL A PAGAR: $10000
       </div>
     </div>
