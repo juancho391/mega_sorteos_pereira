@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import Rifa from "@/components/Rifa";
 import { Boleta } from "@/context/type";
 import CompraSection from "@/components/CompraSection";
@@ -54,7 +53,7 @@ export default function Home() {
   ];
   return (
     <div className="flex items-center flex-col py-2 space-y-7 sm:space-y-0">
-      <Header />
+      {/* <Header /> */}
       <div className="w-full sm:p-14 flex items-center flex-col space-y-6">
         <Rifa
           precio={10000}
