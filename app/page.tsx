@@ -1,12 +1,12 @@
 import Header from "@/components/Header";
 import Rifa from "@/components/Rifa";
-import { NumberProps } from "@/components/NumberContainer";
+import { Boleta } from "@/context/type";
 import CompraSection from "@/components/CompraSection";
 import About from "@/components/about";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-  const numbersList: NumberProps[] = [
+  const numbersList: Boleta[] = [
     {
       number: 93441,
       isAvailable: true,

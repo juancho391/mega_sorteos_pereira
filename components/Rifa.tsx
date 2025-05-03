@@ -1,16 +1,9 @@
 import Image from "next/image";
 import NumberContainer from "./NumberContainer";
-import { NumberProps } from "./NumberContainer";
 import { Progress } from "./ui/progress";
+import { infoRifa } from "@/context/type";
 
-interface InfoLottery {
-  premio: string;
-  tipo: string;
-  precio: number;
-  listNumbers: NumberProps[];
-}
-
-export default function Rifa(props: InfoLottery) {
+export default function Rifa(props: infoRifa) {
   return (
     <div className="w-80 border-1 border-brandYellow h-full rounded-lg flex flex-col items-center px-3 sm:w-full">
       <div className="flex flex-col w-full sm:flex-row h-full">
