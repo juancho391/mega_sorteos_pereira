@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer className="w-full h-full text-center border-t-2 border-brandYellow p-2 flex flex-col justify-center items-center space-y-1">
       <div>
-        <span className="text-brandYellow text-2xl">MEGA SORTEOS</span>
+        <span className="text-brandYellow text-2xl mr-2">MEGA SORTEOS</span>
         <span className="text-brandRed text-2xl">PEREIRA</span>
       </div>
       <p>

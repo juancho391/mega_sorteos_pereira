@@ -19,4 +19,5 @@ export interface Compra {
   confirmarCorreo: string;
   precioBoleta: number;
   cantidad: number;
+  total: number;
 }

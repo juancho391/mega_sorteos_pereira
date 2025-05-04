@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, createContext, ContextType } from "react";
+import { Compra } from "./type";
 
 const Context = createContext<ContextType | null>(null);
 
@@ -10,16 +11,31 @@ function ContextProvider({ children }) {
   //   const [infoLottery, setInfoLottery] = useState({});
   //Estado para la compra de las boletas
   //   const [buyTickets, setBuyTickets] = useState({});
-  const [total, setTotal] = useState(10000);
+  const [total, setTotal] = useState(30000);
 
-  const [cantidad, setCantidad] = useState(1);
+  const [cantidad, setCantidad] = useState(3);
+
+  useEffect(() => {
+    setTotal(cantidad * 10000);
+  }, [cantidad]);
+  const [formCompra, setFormCompra] = useState<Compra>({
+    nombreCompleto: "",
+    numeroDocumento: "",
+    telefono: "",
+    direccion: "",
+    correo: "",
+    confirmarCorreo: "",
+    precioBoleta: 10000,
+    cantidad: 3,
+    total: total,
+  });
 
   const sumarBoleta = () => {
     setCantidad(cantidad + 1);
   };
 
   const restarBoleta = () => {
-    if (cantidad > 1) {
+    if (cantidad > 3) {
       setCantidad(cantidad - 1);
     }
   };
@@ -27,10 +43,6 @@ function ContextProvider({ children }) {
   const setCombo = (cantidad: number) => {
     setCantidad(cantidad);
   };
-
-  useEffect(() => {
-    setTotal(cantidad * 10000);
-  }, [cantidad]);
 
   return (
     <Context.Provider
@@ -40,6 +52,8 @@ function ContextProvider({ children }) {
         restarBoleta,
         total,
         setCombo,
+        formCompra,
+        setFormCompra,
       }}
     >
       {children}
