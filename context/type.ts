@@ -3,12 +3,24 @@ export interface Boleta {
   isAvailable: boolean;
 }
 
-export interface infoRifa {
+export interface InfoRifa {
+  id: number;
+  fecha_fin: string;
+  fecha_inicio: string;
   premio: string;
   tipo: string;
-  precio: number;
+  is_active: boolean;
   listNumbers: Boleta[];
 }
+
+// export class DataRifa implements InfoRifa {
+//   constructor(
+//     public premio: string,
+//     public tipo: string,
+//     public precio: number,
+//     public listNumbers: Boleta[]
+//   ) {}
+// }
 
 export interface Compra {
   nombreCompleto: string;

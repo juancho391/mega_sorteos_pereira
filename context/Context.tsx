@@ -1,16 +1,31 @@
 "use client";
 import { useState, useEffect, createContext, ContextType } from "react";
 import { Compra } from "./type";
-
+import axios from "axios";
+import { InfoRifa, DataRifa } from "./type";
 const Context = createContext<ContextType | null>(null);
 
 function ContextProvider({ children }) {
-  // Estado para la lista de numeros premiados
-  //   const [numbersPremiun, setNumbersPremiun] = useState([]);
-  //Estado para la informacion del rifa
-  //   const [infoLottery, setInfoLottery] = useState({});
-  //Estado para la compra de las boletas
-  //   const [buyTickets, setBuyTickets] = useState({});
+  const [data, setData] = useState<InfoRifa | null>(null);
+  //Peticion para obtener los datos de la rifa
+  useEffect(() => {
+    const getRifa = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/rifa");
+        if (response.status === 200) {
+          console.log(response.data);
+          setData(response.data);
+          console.log(data);
+        } else {
+        }
+      } catch (error) {
+        console.error("Error al obtener los datos de la rifa", error);
+      }
+    };
+
+    getRifa();
+  }, []);
+
   const [total, setTotal] = useState(30000);
 
   const [cantidad, setCantidad] = useState(3);

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import NumberContainer from "./NumberContainer";
 import { Progress } from "./ui/progress";
-import { infoRifa } from "@/context/type";
+import { InfoRifa } from "@/context/type";
 
-export default function Rifa(props: infoRifa) {
+export default function Rifa(props: InfoRifa) {
   return (
     <div className="w-80 border-1 border-brandYellow h-full rounded-lg flex flex-col items-center px-3 sm:w-full">
       <div className="flex flex-col w-full sm:flex-row h-full">
