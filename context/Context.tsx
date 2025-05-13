@@ -2,21 +2,21 @@
 import { useState, useEffect, createContext, ContextType } from "react";
 import { Compra } from "./type";
 import axios from "axios";
-import { InfoRifa, DataRifa } from "./type";
+import { InfoRifa } from "./type";
 const Context = createContext<ContextType | null>(null);
 
 function ContextProvider({ children }) {
   const [data, setData] = useState<InfoRifa | null>(null);
+
   //Peticion para obtener los datos de la rifa
   useEffect(() => {
+    console.log("ejecutando peticion")
     const getRifa = async () => {
       try {
         const response = await axios.get("http://localhost:8000/api/rifa");
         if (response.status === 200) {
-          console.log(response.data);
           setData(response.data);
-          console.log(data);
-        } else {
+          console.log(data)
         }
       } catch (error) {
         console.error("Error al obtener los datos de la rifa", error);
@@ -69,6 +69,7 @@ function ContextProvider({ children }) {
         setCombo,
         formCompra,
         setFormCompra,
+        data,
       }}
     >
       {children}

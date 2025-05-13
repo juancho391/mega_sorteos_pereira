@@ -1,16 +1,19 @@
 export interface Boleta {
-  number: number;
-  isAvailable: boolean;
+  id ?: number;
+  id_rifa ?: number;
+  numero?: number;
+  disponible?: boolean;
 }
 
 export interface InfoRifa {
-  id: number;
-  fecha_fin: string;
-  fecha_inicio: string;
-  premio: string;
+  id ?: number;
+  precio ? : number;
+  fecha_fin ?: string;
+  fecha_inicio ?: string;
+  premio ?: string;
   tipo: string;
-  is_active: boolean;
-  listNumbers: Boleta[];
+  is_active ?: boolean;
+  numeros_especiales ?: Boleta[]
 }
 
 // export class DataRifa implements InfoRifa {
@@ -18,7 +21,10 @@ export interface InfoRifa {
 //     public premio: string,
 //     public tipo: string,
 //     public precio: number,
-//     public listNumbers: Boleta[]
+//     public listNumbers: Boleta[],
+//     public fecha_fin: string,
+//     public fecha_inicio: string,
+//     public 
 //   ) {}
 // }
 

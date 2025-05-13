@@ -47,11 +47,11 @@ export default function Rifa(props: InfoRifa) {
           Numeros Premiados
         </span>
         <div className="h-full w-full flex justify-evenly flex-wrap content-evenly">
-          {props.listNumbers.map((number) => (
+          {props.numeros_especiales?.map((number) => (
             <NumberContainer
-              key={number.number}
-              number={number.number}
-              isAvailable={number.isAvailable}
+              key={number.numero}
+              numero={number.numero}
+              disponible={number.disponible}
             />
           ))}
         </div>
