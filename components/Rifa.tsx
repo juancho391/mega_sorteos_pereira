@@ -35,7 +35,7 @@ export default function Rifa(props: InfoRifa) {
         </div>
         <div className="relative w-full h-64 mb-5 sm:min-h-90 ">
           <Image
-            src={"/NKD.jpg"}
+            src={props.image_premio}
             alt="Picture of bike"
             className="mt-5 object-fill"
             fill
