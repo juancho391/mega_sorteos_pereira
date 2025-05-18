@@ -19,13 +19,11 @@ export default function Login() {
       email: formData.get("email") as string,
       password: formData.get("password") as string,
     };
-    console.log(data);
     try {
       const response = await axios.post(
         "http://localhost:8000/auth/token",
         data
       );
-      console.log(response.data);
       if (response.status === 200) {
         setIslogin(true);
         setToken(response.data.access_token);

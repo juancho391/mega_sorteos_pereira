@@ -1,36 +1,39 @@
+"use client";
 import { CardRifa } from "@/components/ui/CardRifa";
 import { InfoRifa } from "@/context/type";
+import { useEffect } from "react";
+import { Context } from "@/context/Context";
+import { useContext } from "react";
 
-const rifa: InfoRifa = {
-  id: 1,
-  precio: 10000,
-  fecha_inicio: "2025-06-01",
-  fecha_fin: "2025-06-30",
-  premio: "NKD 125",
-  tipo: "Moto 0 kms",
-  is_active: true,
-  image_premio: "https://example.com/moto.jpg",
-  numeros_especiales: [
-    { id: 1, numero: 1445, disponible: false },
-    { id: 2, numero: 25123, disponible: true },
-    { id: 3, numero: 3321, disponible: true },
-    { id: 4, numero: 412, disponible: true },
-    { id: 5, numero: 512, disponible: true },
-    { id: 6, numero: 633, disponible: true },
-    { id: 7, numero: 724, disponible: true },
-    { id: 8, numero: 8512, disponible: true },
-    { id: 9, numero: 9421, disponible: true },
-    { id: 10, numero: 10412, disponible: true },
-  ],
-};
 export function Rifas() {
+  const { getRifas, rifas } = useContext(Context);
+
+  useEffect(() => {
+    getRifas();
+  }, []);
+
   return (
-    <div className="h-full border-2 border-white m-5 p-3 rounded-sm w-full">
-      <CardRifa {...rifa} />
-      {/* <CardRifa {...rifa} />
-      <CardRifa {...rifa} />
-      <CardRifa {...rifa} />
-      <CardRifa {...rifa} /> */}
+    <div
+      className={`h-full border-2 border-white m-5 p-3 rounded-sm w-full ${
+        rifas.length > 0 ? "" : "text-center"
+      }`}
+    >
+      {rifas && rifas.length > 0 ? (
+        rifas.map((rifa: InfoRifa) => (
+          <CardRifa
+            key={rifa.id}
+            precio={rifa.precio}
+            premio={rifa.premio}
+            tipo={rifa.tipo}
+            image_premio={rifa.image_premio}
+            numeros_especiales={rifa.numeros_especiales}
+            is_active={rifa.is_active}
+            id={rifa.id}
+          />
+        ))
+      ) : (
+        <p className="font-extrabold text-2xl">No hay rifas Aun</p>
+      )}
     </div>
   );
 }

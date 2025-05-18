@@ -1,35 +1,35 @@
 "use client";
 import { useState, useEffect, createContext, ContextType } from "react";
 import { Compra } from "./type";
-// import axios from "axios";
+import axios from "axios";
 import { InfoRifa, Token } from "./type";
 const Context = createContext<ContextType | null>(null);
 
 function ContextProvider({ children }) {
   const [data, setData] = useState<InfoRifa | null>(null);
-  //Peticion para obtener los datos de la rifa
-  // useEffect(() => {
-  //   console.log("ejecutando peticion");
-  //   const getRifa = async () => {
-  //     try {
-  //       const response = await axios.get("http://localhost:8000/api/rifa");
-  //       if (response.status === 200) {
-  //         setData(response.data);
-  //         console.log(data);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error al obtener los datos de la rifa", error);
-  //     }
-  //   };
-
-  //   getRifa();
-  // }, []);
 
   const [total, setTotal] = useState(30000);
 
   const [token, setToken] = useState<Token | null>(null);
 
   const [cantidad, setCantidad] = useState(3);
+
+  const [rifas, setRifas] = useState<InfoRifa[]>([]);
+
+  const getRifas = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/rifa", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.status === 200) {
+        setRifas(response.data);
+      }
+    } catch (error) {
+      console.error("Error al obtener los datos de la rifa", error);
+    }
+  };
 
   useEffect(() => {
     setTotal(cantidad * data?.precio);
@@ -74,6 +74,8 @@ function ContextProvider({ children }) {
         setData,
         setToken,
         token,
+        getRifas,
+        rifas,
       }}
     >
       {children}

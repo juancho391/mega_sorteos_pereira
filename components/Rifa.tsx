@@ -56,7 +56,7 @@ export default function Rifa(props: InfoRifa) {
           ))}
         </div>
         <div className="w-full h-7 sm:h-14">
-          <Progress value={60} />
+          <Progress value={100} />
         </div>
       </div>
     </div>

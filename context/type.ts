@@ -15,6 +15,13 @@ export interface InfoRifa {
   is_active?: boolean;
   image_premio?: string;
   numeros_especiales?: Boleta[];
+  boletas_vendidas?: number;
+}
+
+export interface RifaCreate {
+  premio: string;
+  tipo: string;
+  precio: number;
 }
 
 // export class DataRifa implements InfoRifa {
