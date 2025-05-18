@@ -1,6 +1,6 @@
 "use client";
 import Rifa from "@/components/Rifa";
-import { Boleta } from "@/context/type";
+import Loader from "@/components/ui/loader";
 import CompraSection from "@/components/CompraSection";
 import About from "@/components/about";
 import Footer from "@/components/Footer";
@@ -44,7 +44,7 @@ export default function Home() {
             <CompraSection />
           </>
         ) : (
-          <p>Cargando datos...</p>
+          <Loader />
         )}
 
         <About />
