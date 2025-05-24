@@ -15,7 +15,14 @@ export interface InfoRifa {
   is_active?: boolean;
   image_premio?: string;
   numeros_especiales?: Boleta[];
-  boletas_vendidas?: number;
+  boletas?: BoletaNormal[];
+}
+
+export interface BoletaNormal {
+  id_rifa: number;
+  numero: number;
+  id_usuario: number;
+  id: number;
 }
 
 export interface RifaCreate {
@@ -24,30 +31,27 @@ export interface RifaCreate {
   precio: number;
 }
 
-// export class DataRifa implements InfoRifa {
-//   constructor(
-//     public premio: string,
-//     public tipo: string,
-//     public precio: number,
-//     public listNumbers: Boleta[],
-//     public fecha_fin: string,
-//     public fecha_inicio: string,
-//     public
-//   ) {}
-// }
-
 export interface Compra {
-  nombreCompleto: string;
-  numeroDocumento: string;
-  telefono: string;
+  id_rifa: number;
+  nombre_completo: string;
+  cedula: string;
+  telefono_celular: string;
   direccion: string;
-  correo: string;
-  confirmarCorreo: string;
-  precioBoleta: number;
+  email: string;
+  confirmarCorreo?: string;
+  precio: number;
   cantidad: number;
-  total: number;
 }
 
 export interface Token {
   token: string;
+}
+
+export interface Ganador {
+  id?: number;
+  cedula?: string;
+  email?: string;
+  nombre?: string;
+  direccion?: string;
+  celular?: string;
 }

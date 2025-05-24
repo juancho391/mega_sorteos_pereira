@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import axios from "axios";
 
 export default function Home() {
-  const { data, setData } = useContext(Context);
+  const { data, setData, setnoVendidas } = useContext(Context);
   useEffect(() => {
     console.log("ejecutando peticion");
     const getRifa = async () => {
@@ -18,7 +18,7 @@ export default function Home() {
         const response = await axios.get("http://localhost:8000/rifa/activa");
         if (response.status === 200) {
           setData(response.data);
-          console.log(data);
+          setnoVendidas(response.data.boletas.length);
         }
       } catch (error) {
         console.error("Error al obtener los datos de la rifa", error);
