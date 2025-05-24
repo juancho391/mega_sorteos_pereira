@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect, createContext, ContextType } from "react";
-import { Compra } from "./type";
 import axios from "axios";
 import { InfoRifa, Token } from "./type";
 const Context = createContext<ContextType | null>(null);
@@ -8,7 +7,7 @@ const Context = createContext<ContextType | null>(null);
 function ContextProvider({ children }) {
   const [data, setData] = useState<InfoRifa | null>(null);
 
-  const [total, setTotal] = useState(30000);
+  const [total, setTotal] = useState(3000);
 
   const [token, setToken] = useState<Token | null>(null);
 
@@ -16,6 +15,7 @@ function ContextProvider({ children }) {
 
   const [rifas, setRifas] = useState<InfoRifa[]>([]);
 
+  const [noVendidas, setnoVendidas] = useState(0);
   const getRifas = async () => {
     try {
       const response = await axios.get("http://localhost:8000/rifa", {
@@ -24,6 +24,7 @@ function ContextProvider({ children }) {
         },
       });
       if (response.status === 200) {
+        console.log(response.data);
         setRifas(response.data);
       }
     } catch (error) {
@@ -34,17 +35,6 @@ function ContextProvider({ children }) {
   useEffect(() => {
     setTotal(cantidad * data?.precio);
   }, [cantidad]);
-  const [formCompra, setFormCompra] = useState<Compra>({
-    nombreCompleto: "",
-    numeroDocumento: "",
-    telefono: "",
-    direccion: "",
-    correo: "",
-    confirmarCorreo: "",
-    precioBoleta: 10000,
-    cantidad: 3,
-    total: total,
-  });
 
   const sumarBoleta = () => {
     setCantidad(cantidad + 1);
@@ -52,6 +42,8 @@ function ContextProvider({ children }) {
 
   const restarBoleta = () => {
     if (cantidad > 3) {
+      setCantidad(cantidad - 1);
+    } else if (9999 - noVendidas < 3 && 9999 - noVendidas > 0) {
       setCantidad(cantidad - 1);
     }
   };
@@ -68,14 +60,14 @@ function ContextProvider({ children }) {
         restarBoleta,
         total,
         setCombo,
-        formCompra,
-        setFormCompra,
         data,
         setData,
         setToken,
         token,
         getRifas,
         rifas,
+        setnoVendidas,
+        noVendidas,
       }}
     >
       {children}
