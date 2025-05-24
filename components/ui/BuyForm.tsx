@@ -2,16 +2,31 @@
 import { useContext, useState } from "react";
 import { CiCreditCard1 } from "react-icons/ci";
 import { Context } from "@/context/Context";
+import { Compra } from "@/context/type";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function BuyForm() {
-  const { formCompra, setFormCompra, cantidad, total } = useContext(Context);
+  const { cantidad, data, noVendidas } = useContext(Context);
+  const router = useRouter();
+
+  const [formCompra, setFormCompra] = useState<Compra>({
+    id_rifa: data.id,
+    nombre_completo: "",
+    cedula: "",
+    telefono_celular: "",
+    direccion: "",
+    email: "",
+    precio: data.precio,
+    cantidad: cantidad,
+  });
 
   const [errores, setErrores] = useState({
-    nombreCompleto: "",
-    numeroDocumento: "",
-    telefono: "",
+    nombre_completo: "",
+    cedula: "",
+    telefono_celular: "",
     direccion: "",
-    correo: "",
+    email: "",
     confirmarCorreo: "",
   });
 
@@ -24,38 +39,63 @@ export default function BuyForm() {
     setErrores((prev) => ({ ...prev, [name]: "" })); // limpiar error al escribir
   };
 
+  const crearCompra = async (formCompraBody: Compra) => {
+    const response = await axios.post(
+      "http://localhost:8000/compra",
+      formCompraBody
+    );
+
+    if (response.status === 200) {
+      console.log(response.data);
+      const init_point = response.data.init_point;
+      router.push(init_point);
+    }
+  };
+
+  const mensajeAlerta = `No Hay Boletas Suficientes, boletas restantes : ${
+    9999 - noVendidas
+  }`;
+
+  let alerta = false
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (cantidad > noVendidas) {
+      alerta = true;
+      return;
+    }
     const formActualizado = {
       ...formCompra,
       cantidad,
-      total,
     };
 
     const nuevosErrores: typeof errores = {
-      nombreCompleto: formCompra.nombreCompleto
+      nombre_completo: formCompra.nombre_completo
         ? ""
         : "Este campo es obligatorio",
-      numeroDocumento: formCompra.numeroDocumento
+      cedula: formCompra.cedula ? "" : "Este campo es obligatorio",
+      telefono_celular: formCompra.telefono_celular
         ? ""
         : "Este campo es obligatorio",
-      telefono: formCompra.telefono ? "" : "Este campo es obligatorio",
       direccion: formCompra.direccion ? "" : "Este campo es obligatorio",
-      correo: formCompra.correo ? "" : "Este campo es obligatorio",
+      email: formCompra.email ? "" : "Este campo es obligatorio",
       confirmarCorreo: formCompra.confirmarCorreo
         ? ""
         : "Este campo es obligatorio",
     };
 
-    if (formCompra.telefono.length < 10 || formCompra.telefono.length > 10) {
-      nuevosErrores.telefono = "El telefono debe tener 10 digitos";
+    if (
+      formCompra.telefono_celular.length < 10 ||
+      formCompra.telefono_celular.length > 10
+    ) {
+      nuevosErrores.telefono_celular = "El telefono debe tener 10 digitos";
     }
 
     if (
-      formCompra.correo &&
+      formCompra.email &&
       formCompra.confirmarCorreo &&
-      formCompra.correo !== formCompra.confirmarCorreo
+      formCompra.email !== formCompra.confirmarCorreo
     ) {
       nuevosErrores.confirmarCorreo = "Los correos no coinciden";
     }
@@ -66,6 +106,7 @@ export default function BuyForm() {
     if (hayErrores) return;
 
     console.log(formActualizado);
+    crearCompra(formActualizado);
   };
 
   const inputClass = (error: string) =>
@@ -79,17 +120,17 @@ export default function BuyForm() {
     <form onSubmit={handleSubmit} className="w-full h-full p-2 space-y-4">
       {[
         {
-          id: "nombreCompleto",
+          id: "nombre_completo",
           label: "Nombre Completo",
           placeholder: "Ingresa tu nombre completo",
         },
         {
-          id: "numeroDocumento",
+          id: "cedula",
           label: "Número de Documento",
           placeholder: "Ingresa tu número de cédula",
         },
         {
-          id: "telefono",
+          id: "telefono_celular",
           label: "Teléfono Celular",
           placeholder: "Ingresa tu número de celular",
         },
@@ -99,7 +140,7 @@ export default function BuyForm() {
           placeholder: "Ingresa tu dirección completa",
         },
         {
-          id: "correo",
+          id: "email",
           label: "Correo Electrónico",
           placeholder: "Ingresa tu correo electrónico",
         },
@@ -136,6 +177,11 @@ export default function BuyForm() {
         <CiCreditCard1 className="text-3xl" />
         PAGAR
       </button>
+      {alerta ? (
+        <p className="text-brandRed text-center font-extrabold ">
+          {mensajeAlerta}
+        </p>
+      ) : null}
     </form>
   );
 }
