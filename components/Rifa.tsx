@@ -2,8 +2,14 @@ import Image from "next/image";
 import NumberContainer from "./NumberContainer";
 import { Progress } from "./ui/progress";
 import { InfoRifa } from "@/context/type";
+import { useContext } from "react";
+import { Context } from "@/context/Context";
 
 export default function Rifa(props: InfoRifa) {
+  const { noVendidas } = useContext(Context);
+
+  const porcentaje = (noVendidas / 9999) * 100;
+  console.log(porcentaje);
   return (
     <div className="w-80 border-1 border-brandYellow h-full rounded-lg flex flex-col items-center px-3 sm:w-full">
       <div className="flex flex-col w-full sm:flex-row h-full">
@@ -56,7 +62,7 @@ export default function Rifa(props: InfoRifa) {
           ))}
         </div>
         <div className="w-full h-7 sm:h-14">
-          <Progress value={100} />
+          <Progress value={porcentaje} />
         </div>
       </div>
     </div>

@@ -42,7 +42,7 @@ export default function CompraSection() {
       </div>
       <div className="w-full">
         <BuyForm />
-        <CheckBuy total={total} />
+        <CheckBuy total={total ? total : data.precio * 3} />
       </div>
     </div>
   );
