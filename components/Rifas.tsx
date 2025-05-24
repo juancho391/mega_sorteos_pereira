@@ -29,6 +29,7 @@ export function Rifas() {
             numeros_especiales={rifa.numeros_especiales}
             is_active={rifa.is_active}
             id={rifa.id}
+            boletas={rifa.boletas}
           />
         ))
       ) : (
