@@ -9,13 +9,13 @@ import { useState } from "react";
 import { Ganador } from "@/context/type";
 export function CardRifa(props: InfoRifa) {
   const [numeroEspecial, setNumeroEspecial] = useState<number | null>(null);
-  const { token, getRifas } = useContext(Context);
+  const { token, getRifas, base_url } = useContext(Context);
   const [dataGanador, setDataGanador] = useState<Ganador | null>(null);
 
   const crearNumeroEspecial = async (newNumber: Boleta) => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/numeros/numero_especial",
+        `${base_url}/numeros/numero_especial`,
         newNumber,
         {
           headers: {
@@ -60,7 +60,7 @@ export function CardRifa(props: InfoRifa) {
 
     try {
       const response = await axios.patch(
-        `http://localhost:8000/rifa/${data.id}/desactivar`,
+        `${base_url}/rifa/${data.id}/desactivar`,
         null,
         {
           headers: {
@@ -77,10 +77,9 @@ export function CardRifa(props: InfoRifa) {
   };
 
   const obtenerGanador = async (numero: Boleta) => {
-    console.log(numero);
     try {
       const response = await axios.get(
-        `http://localhost:8000/rifa/${numero.id_rifa}/${numero.numero}`,
+        `${base_url}/rifa/${numero.id_rifa}/${numero.numero}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -111,9 +110,7 @@ export function CardRifa(props: InfoRifa) {
           <li>{props.premio}</li>
           <li className="text-brandYellow">precio : {props.precio}</li>
           <li className="text-brandYellow">{props.tipo}</li>
-          <li>
-            Vendidas:{props.boletas ? props.boletas?.length : 0}
-          </li>
+          <li>Vendidas:{props.boletas ? props.boletas?.length : 0}</li>
           <li>{props.is_active === true ? "Activa" : "Desactivada"}</li>
           <li>
             recaudado:

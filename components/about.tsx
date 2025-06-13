@@ -11,7 +11,7 @@ export default function About() {
       </span>
       <span className="inline-block text-center font-light text-sm sm:text-lg">
         en <span className="text-brandYellow">MEGA SORTEOS PEREIRA</span> nos
-        dedicamos a hacer realidad los sueños de nuestros participantes a traés
+        dedicamos a hacer realidad los sueños de nuestros participantes atraves
         de sorteos transparentes y confiables
       </span>
       <span className="inline-block font-extrabold sm:text-2xl">

@@ -16,15 +16,16 @@ function ContextProvider({ children }) {
   const [rifas, setRifas] = useState<InfoRifa[]>([]);
 
   const [noVendidas, setnoVendidas] = useState(0);
+
+  const base_url = process.env.NEXT_PUBLIC_API_URL;
   const getRifas = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/rifa", {
+      const response = await axios.get(`${base_url}/rifa`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       if (response.status === 200) {
-        console.log(response.data);
         setRifas(response.data);
       }
     } catch (error) {
@@ -68,6 +69,7 @@ function ContextProvider({ children }) {
         rifas,
         setnoVendidas,
         noVendidas,
+        base_url,
       }}
     >
       {children}

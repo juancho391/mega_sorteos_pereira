@@ -10,12 +10,12 @@ import { useEffect } from "react";
 import axios from "axios";
 
 export default function Home() {
-  const { data, setData, setnoVendidas } = useContext(Context);
+  const { data, setData, setnoVendidas, base_url } = useContext(Context);
   useEffect(() => {
     console.log("ejecutando peticion");
     const getRifa = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/rifa/activa");
+        const response = await axios.get(`${base_url}/rifa/activa`);
         if (response.status === 200) {
           setData(response.data);
           setnoVendidas(response.data.boletas.length);

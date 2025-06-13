@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 export default function Login() {
   const router = useRouter();
-  const { setToken } = useContext(Context);
+  const { setToken, base_url } = useContext(Context);
   const [isLogin, setIslogin] = useState(true);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,10 +20,7 @@ export default function Login() {
       password: formData.get("password") as string,
     };
     try {
-      const response = await axios.post(
-        "http://localhost:8000/auth/token",
-        data
-      );
+      const response = await axios.post(`${base_url}/auth/token`, data);
       if (response.status === 200) {
         setIslogin(true);
         setToken(response.data.access_token);
@@ -31,7 +28,6 @@ export default function Login() {
       }
     } catch (error) {
       setIslogin(false);
-      console.error("Error al iniciar sesion", error);
     }
   };
   return (

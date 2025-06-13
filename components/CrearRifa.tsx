@@ -7,7 +7,7 @@ import { Context } from "@/context/Context";
 import { useContext } from "react";
 
 export function CrearRifa() {
-  const { token, getRifas } = useContext(Context);
+  const { token, getRifas, base_url } = useContext(Context);
   const [imagen, setImagen] = useState<File | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -33,23 +33,18 @@ export function CrearRifa() {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/rifa",
-        formDataToSend,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post(`${base_url}/rifa`, formDataToSend, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       if (response.status === 200) {
-        console.log("Rifa creada con éxito:", response.data);
         getRifas();
       }
     } catch (error) {
-      console.error("Error al crear la rifa:", error);
+      alert("Error al crear la rifa, por favor intente nuevamente.");
     }
   };
   return (

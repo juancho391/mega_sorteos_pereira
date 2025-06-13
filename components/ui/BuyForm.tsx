@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 
 export default function BuyForm() {
-  const { cantidad, data, noVendidas } = useContext(Context);
+  const { cantidad, data, noVendidas, base_url } = useContext(Context);
   const router = useRouter();
 
   const [formCompra, setFormCompra] = useState<Compra>({
@@ -40,13 +40,9 @@ export default function BuyForm() {
   };
 
   const crearCompra = async (formCompraBody: Compra) => {
-    const response = await axios.post(
-      "http://localhost:8000/compra",
-      formCompraBody
-    );
+    const response = await axios.post(`${base_url}/compra`, formCompraBody);
 
     if (response.status === 200) {
-      console.log(response.data);
       const init_point = response.data.init_point;
       router.push(init_point);
     }
@@ -56,7 +52,7 @@ export default function BuyForm() {
     9999 - noVendidas
   }`;
 
-  let alerta = false
+  let alerta = false;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -105,7 +101,6 @@ export default function BuyForm() {
 
     if (hayErrores) return;
 
-    console.log(formActualizado);
     crearCompra(formActualizado);
   };
 
