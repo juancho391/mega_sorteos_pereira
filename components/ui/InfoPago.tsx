@@ -1,3 +1,4 @@
+"use client";
 import { MdOutlineCheckCircle } from "react-icons/md";
 import { GoXCircle } from "react-icons/go";
 import { useRouter } from "next/navigation";

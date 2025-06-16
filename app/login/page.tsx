@@ -2,14 +2,13 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import axios from "axios";
-import { Context } from "@/context/Context";
-import { useContext } from "react";
+import { useAppContext } from "@/context/Context";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
   const router = useRouter();
-  const { setToken, base_url } = useContext(Context);
+  const { setToken, base_url } = useAppContext();
   const [isLogin, setIslogin] = useState(true);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -55,3 +55,22 @@ export interface Ganador {
   direccion?: string;
   celular?: string;
 }
+
+
+
+export interface ContextType {
+  cantidad: number;
+  sumarBoleta: () => void;
+  restarBoleta: () => void;
+  total: number;
+  setCombo: (cantidad: number) => void;
+  data: InfoRifa | null;
+  setData: (data: InfoRifa) => void;
+  setToken: (token: Token) => void;
+  token: Token | null;
+  getRifas: () => void;
+  rifas: InfoRifa[];
+  setnoVendidas: (num: number) => void;
+  noVendidas: number;
+  base_url?: string;
+}

@@ -1,23 +1,23 @@
 "use client";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { CiCreditCard1 } from "react-icons/ci";
-import { Context } from "@/context/Context";
+import { useAppContext } from "@/context/Context";
 import { Compra } from "@/context/type";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
 export default function BuyForm() {
-  const { cantidad, data, noVendidas, base_url } = useContext(Context);
+  const { cantidad, data, noVendidas, base_url } = useAppContext();
   const router = useRouter();
 
   const [formCompra, setFormCompra] = useState<Compra>({
-    id_rifa: data.id,
+    id_rifa: data?.id ?? 0,
     nombre_completo: "",
     cedula: "",
     telefono_celular: "",
     direccion: "",
     email: "",
-    precio: data.precio,
+    precio: data?.precio ?? 0,
     cantidad: cantidad,
   });
 

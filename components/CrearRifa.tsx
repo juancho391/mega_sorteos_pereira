@@ -3,11 +3,10 @@ import { FileUpload } from "./ui/file-upload";
 import { RifaCreate } from "@/context/type";
 import { useState } from "react";
 import axios from "axios";
-import { Context } from "@/context/Context";
-import { useContext } from "react";
+import { useAppContext } from "@/context/Context";
 
 export function CrearRifa() {
-  const { token, getRifas, base_url } = useContext(Context);
+  const { token, getRifas, base_url } = useAppContext();
   const [imagen, setImagen] = useState<File | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

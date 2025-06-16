@@ -5,11 +5,11 @@ import TicketCounter from "./ui/TicketCounter";
 import CardSummary from "./ui/CardSummary";
 import BuyForm from "./ui/BuyForm";
 import CheckBuy from "./ui/CheckBuy";
-import { useContext } from "react";
-import { Context } from "@/context/Context";
+import { useAppContext } from "@/context/Context";
+
 export default function CompraSection() {
   const { cantidad, sumarBoleta, restarBoleta, total, setCombo, data } =
-    useContext(Context);
+    useAppContext();
   return (
     <div className="border-2 border-brandYellow w-80 rounded-lg h-full flex flex-col items-center gap-3 p-3 sm:w-full sm:flex-row">
       <div className="gap-3 p-3 w-80 sm:w-full flex flex-col items-center sm:gap-6">
@@ -18,17 +18,17 @@ export default function CompraSection() {
         </span>
         <div className="flex w-full h-full flex-wrap gap-2">
           <ComboCard
-            precio={data.precio * 3}
+            precio={(data?.precio ?? 0) * 3}
             cantidad={3}
             setCombo={setCombo}
           />
           <ComboCard
-            precio={data.precio * 5}
+            precio={(data?.precio ?? 0) * 5}
             cantidad={5}
             setCombo={setCombo}
           />
           <ComboCard
-            precio={data.precio * 10}
+            precio={(data?.precio ?? 0) * 10}
             cantidad={10}
             setCombo={setCombo}
           />
@@ -38,11 +38,11 @@ export default function CompraSection() {
           sumarBoleta={sumarBoleta}
           restarBoleta={restarBoleta}
         />
-        <CardSummary ticketPrice={data.precio} quantity={cantidad} />
+        <CardSummary ticketPrice={data?.precio ?? 0} quantity={cantidad} />
       </div>
       <div className="w-full">
         <BuyForm />
-        <CheckBuy total={total ? total : data.precio * 3} />
+        <CheckBuy total={total ? total : (data?.precio ?? 0) * 3} />
       </div>
     </div>
   );

@@ -4,13 +4,12 @@ import Loader from "@/components/ui/loader";
 import CompraSection from "@/components/CompraSection";
 import About from "@/components/about";
 import Footer from "@/components/Footer";
-import { Context } from "@/context/Context";
-import { useContext } from "react";
+import { useAppContext } from "@/context/Context";
 import { useEffect } from "react";
 import axios from "axios";
 
 export default function Home() {
-  const { data, setData, setnoVendidas, base_url } = useContext(Context);
+  const { data, setData, setnoVendidas, base_url } = useAppContext();
   useEffect(() => {
     console.log("ejecutando peticion");
     const getRifa = async () => {

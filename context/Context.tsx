@@ -1,10 +1,29 @@
 "use client";
-import { useState, useEffect, createContext, ContextType } from "react";
+import {
+  useState,
+  useEffect,
+  createContext,
+  ReactNode,
+  useContext,
+} from "react";
+import { ContextType } from "./type";
 import axios from "axios";
 import { InfoRifa, Token } from "./type";
 const Context = createContext<ContextType | null>(null);
 
-function ContextProvider({ children }) {
+function useAppContext(): ContextType {
+  const context = useContext(Context);
+  if (!context) {
+    throw new Error("useAppContext must be used within a ContextProvider");
+  }
+  return context;
+}
+
+type ContextProviderProps = {
+  children: ReactNode;
+};
+
+function ContextProvider({ children }: ContextProviderProps) {
   const [data, setData] = useState<InfoRifa | null>(null);
 
   const [total, setTotal] = useState(3000);
@@ -34,7 +53,7 @@ function ContextProvider({ children }) {
   };
 
   useEffect(() => {
-    setTotal(cantidad * data?.precio);
+    setTotal(cantidad * (data?.precio ?? 0));
   }, [cantidad]);
 
   const sumarBoleta = () => {
@@ -77,4 +96,4 @@ function ContextProvider({ children }) {
   );
 }
 
-export { Context, ContextProvider };
+export { Context, ContextProvider, useAppContext };

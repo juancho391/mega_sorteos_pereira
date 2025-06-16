@@ -2,11 +2,10 @@
 import { CardRifa } from "@/components/ui/CardRifa";
 import { InfoRifa } from "@/context/type";
 import { useEffect } from "react";
-import { Context } from "@/context/Context";
-import { useContext } from "react";
+import { useAppContext } from "@/context/Context";
 
 export function Rifas() {
-  const { getRifas, rifas } = useContext(Context);
+  const { getRifas, rifas } = useAppContext();
 
   useEffect(() => {
     getRifas();

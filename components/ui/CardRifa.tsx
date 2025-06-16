@@ -2,14 +2,13 @@
 import { InfoRifa } from "@/context/type";
 import NumberContainer from "../NumberContainer";
 import axios from "axios";
-import { Context } from "@/context/Context";
-import { useContext } from "react";
+import { useAppContext } from "@/context/Context";
 import { Boleta } from "@/context/type";
 import { useState } from "react";
 import { Ganador } from "@/context/type";
 export function CardRifa(props: InfoRifa) {
   const [numeroEspecial, setNumeroEspecial] = useState<number | null>(null);
-  const { token, getRifas, base_url } = useContext(Context);
+  const { token, getRifas, base_url } = useAppContext();
   const [dataGanador, setDataGanador] = useState<Ganador | null>(null);
 
   const crearNumeroEspecial = async (newNumber: Boleta) => {
