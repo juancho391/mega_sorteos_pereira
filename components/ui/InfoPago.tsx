@@ -10,7 +10,7 @@ export interface InfoSolicitud {
 export default function InfoPago(props: InfoSolicitud) {
   const router = useRouter();
   const mensaje = props.aprobado
-    ? "Tu pago se ha realizado con exito los numeros de tu boleta se enviaran a tu correo electronico"
+    ? "Tu pago se ha realizado con exito los numeros de tu boleta se enviaran a tu correo electronico, gracias por participar en nuestros sorteos, si no recibiste tus numeros recuerda revisar tu bandeja de spam"
     : "Algo salio mal no pudimos procesar tu pago intentalo nuevamente";
   return (
     <div className="flex items-center flex-col p-3 space-y-7 sm:space-y-0 text-center">
