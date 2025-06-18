@@ -11,7 +11,10 @@ export default function CompraSection() {
   const { cantidad, sumarBoleta, restarBoleta, total, setCombo, data } =
     useAppContext();
   return (
-    <div className="border-2 border-brandYellow w-80 rounded-lg h-full flex flex-col items-center gap-3 p-3 sm:w-full sm:flex-row">
+    <div
+      id="compra"
+      className="border-2 border-brandYellow w-80 rounded-lg h-full flex flex-col items-center gap-3 p-3 sm:w-full sm:flex-row"
+    >
       <div className="gap-3 p-3 w-80 sm:w-full flex flex-col items-center sm:gap-6">
         <span className="mt-3 inline-block font-extrabold bg-gradient-to-r from-brandRed to to-brandYellow bg-clip-text text-transparent sm:text-3xl">
           COMPRA TUS BOLETAS

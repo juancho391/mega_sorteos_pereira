@@ -33,9 +33,12 @@ export default function Rifa(props: InfoRifa) {
               </span>
             </div>
           </div>
-          <button className="w-full bg-linear-to-r from-brandRed to-brandYellow rounded-lg h-10 sm:max-w-full sm:text-lg ">
+          <a
+            href="#compra"
+            className="w-full bg-linear-to-r from-brandRed to-brandYellow rounded-lg h-10 sm:max-w-full sm:text-lg text-center flex items-center justify-center "
+          >
             COMPRAR AHORA!
-          </button>
+          </a>
         </div>
         <div className="relative w-full h-64 mb-5 sm:min-h-90 ">
           {props.image_premio && (
